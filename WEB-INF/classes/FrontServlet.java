@@ -5,25 +5,26 @@
  */
 package etu1851.framework.servlet;
 
-import etu1851.framework.*;
+import etu1851.framework.Mapping;
 import etu1851.framework.Utilitaire;
-
-import java.util.HashMap;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author skyhawk
+ * @author ITU
  */
+@WebServlet(name = "FrontServlet", urlPatterns = {"/*"})
 public class FrontServlet extends HttpServlet {
- 
+    HashMap<String, Mapping> mappingUrls;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,7 +35,7 @@ public class FrontServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException ,Exception{
+            throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -44,9 +45,9 @@ public class FrontServlet extends HttpServlet {
             out.println("<title>Servlet FrontServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>url " + Utilitaire.infoUrl(request.getRequestURL().toString(), "http://localhost:8081/Framework1/")+ "</h1>");
-            out.println("<a href='../'>url " + Utilitaire.infoUrl(request.getRequestURL().toString(), "http://localhost:8081/Framework1/")+ "</a>");
-            out.println("<h1>Servlet FrontServlet at " + request.getContextPath() + "</h1>");
+//            out.println("<h1>Servlet FrontServlet at " + request.getContextPath() + "</h1>");
+//            out.println("<h1>url " + Utilitaire.infoUrl(request.getRequestURL().toString(), "http://localhost:8080/Framework/")+ "</h1>");
+            out.println("<h1>url " + Utilitaire.infoUrl2(request.getPathInfo())+ "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
